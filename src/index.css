@@ -1,0 +1,72 @@
+*{
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.game {
+   text-align: center;
+   
+   height: 100vh;
+}
+
+.red-bg {
+   background-color: rgb(236, 30, 68);
+  
+}
+
+.blue-bg {
+   background-color: rgb(38, 117, 244);
+
+}
+
+.winner-container {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: rgba(255, 255, 255, 0.9);
+   padding: 20px;
+   border-radius: 6px;
+   text-align: center;
+ }
+
+.winner-bg {
+   background-color: rgb(167, 82, 247);
+}
+
+.roll-1 { 
+   animation-name: wobble; 
+   animation-duration: .8s; 
+} 
+ 
+/* Setting Animation effect to the  
+    dice using css keyframe */
+@keyframes wobble { 
+   from { 
+       transform: translate3d(0, 0, 0); 
+   } 
+ 
+   15% { 
+       transform: translate3d(-10%, 0, 0) rotate3d(0, 0, 1, -5deg); 
+   } 
+ 
+   30% { 
+       transform: translate3d(8%, 0, 0) rotate3d(0, 0, 1, 3deg); 
+   } 
+ 
+   45% { 
+       transform: translate3d(-6%, 0, 0) rotate3d(0, 0, 1, -3deg); 
+   } 
+ 
+   60% { 
+       transform: translate3d(4%, 0, 0) rotate3d(0, 0, 1, 2deg); 
+   } 
+ 
+   75% { 
+       transform: translate3d(-2%, 0, 0) rotate3d(0, 0, 1, -1deg); 
+   } 
+ 
+   to { 
+       transform: translate3d(0, 0, 0); 
+   } 
+}
