@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import Dice from 'react-dice-roll'
+import { useState, useEffect, useRef } from 'react'
+import ReactDice, {ReactDiceRef} from 'react-dice-complete'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import Confetti from 'react-confetti'
@@ -8,12 +8,20 @@ import Confetti from 'react-confetti'
 function App() {
 
    const [currentPlayer, setCurrentPlayer] = useState('red');
-   const [currentTurnScore, setCurrentTurnScore] = useState(0);
-   const [totalScores, setTotalScores] = useState({ red: 0, blue: 0 });
-   const [winner, setWinner] = useState(null);
-   const [rollClass, setRollClass] = useState('')
-   const [isRolling, setIsRolling] = useState(false)
-   const [confetti, setConfetti] = useState(false)
+    const [currentTurnScore, setCurrentTurnScore] = useState(0);
+    const [totalScores, setTotalScores] = useState({ red: 0, blue: 0 });
+    const [winner, setWinner] = useState(null);
+    const [rollClass, setRollClass] = useState('')
+    const [isRolling, setIsRolling] = useState(false)
+    const [confetti, setConfetti] = useState(false)
+
+    const reactDice = useRef(null);
+
+const rollDone = (totalValue, values) => {
+  console.log('individual die values array:', values);
+  console.log('total dice value:', totalValue);
+  handleRoll(totalValue)
+}
 
    useEffect(() => {
      if (totalScores.red >= 20 || totalScores.blue >= 20) {
@@ -88,21 +96,29 @@ function App() {
        <p>Red Score: {totalScores.red}</p>
        <p>Blue Score: {totalScores.blue}</p>
        <p>{currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn Score: {currentTurnScore}</p>
-       <div className={rollClass}>
-       <Dice 
-         rollingTime={1000}
-         onRoll={handleRoll} 
-         size={150}
-         disabled={isRolling}  
-               
-        />
+       <div className={rollClass} disabled={isRolling}>
+       <ReactDice
+              numDice={1}
+              ref={reactDice}
+              rollDone={rollDone}
+              faceColor='white'
+              dotColor='black'
+              outline={true}
+              outlineColor='black'
+              dieSize={140}
+              rollTime={0.8}
+              dieCornerRadius={20}
+              disableIndividual={isRolling}
+            />
         </div>
        <div>
-       <button className='btn btn-success mt-4' onClick={endTurn}>End Turn</button>
+       <button className='btn btn-success btn-lg mt-4' onClick={endTurn}>End Turn</button>
        </div>
      </div>
        )}
      </div>
+
+
    );
 }
 
