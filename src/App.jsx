@@ -14,26 +14,23 @@ function App() {
     const [rollClass, setRollClass] = useState('')
     const [isRolling, setIsRolling] = useState(false)
     const [confetti, setConfetti] = useState(false)
+    const [isGameStarted, setIsGameStarted] = useState(false)
 
     const reactDice = useRef(null);
-
-const rollDone = (totalValue, values) => {
-  console.log('individual die values array:', values);
-  console.log('total dice value:', totalValue);
-  handleRoll(totalValue)
-}
+    const playerButtonClass = currentPlayer === 'red' ? 'btn-primary' : 'btn-danger'
+    const playerPassText = currentPlayer === 'red' ? 'Blue' : 'Red'
 
    useEffect(() => {
-     if (totalScores.red >= 20 || totalScores.blue >= 20) {
+     if (totalScores.red >= 100 || totalScores.blue >= 100) {
        // If any player reaches 100 points, set the winner.
-       setWinner(totalScores.red >= 20 ? 'Red' : 'Blue');
+       setWinner(totalScores.red >= 100 ? 'Red' : 'Blue');
        setConfetti(true)
      }
    }, [totalScores]);
  
-   function handleRoll(rollResult){
+   function handleRoll(totalValue){
       setIsRolling(true)
-      if (rollResult === 1) {
+      if (totalValue === 1) {
         // If a 1 is rolled, reset the current turn score and switch players.
         setCurrentTurnScore(0);
         setCurrentPlayer(currentPlayer === 'red' ? 'blue' : 'red');
@@ -44,7 +41,7 @@ const rollDone = (totalValue, values) => {
         }, 800);
       } else {
         // Add the roll result to the current turn score.
-        setCurrentTurnScore(currentTurnScore + rollResult);
+        setCurrentTurnScore(currentTurnScore + totalValue);
         setRollClass('')
         setIsRolling(false)
       }
@@ -79,7 +76,7 @@ const rollDone = (totalValue, values) => {
          <>
    <div className='winner-container'>
      <h2>{winner} wins!</h2>
-     <button className='btn btn-primary' onClick={restartGame}>Restart Game</button>
+     <button className='btn btn-primary' onClick={restartGame}>Play Again</button>
    </div>
    {confetti && (
       <Confetti
@@ -99,8 +96,9 @@ const rollDone = (totalValue, values) => {
        <div className={rollClass} disabled={isRolling}>
        <ReactDice
               numDice={1}
+              defaultRoll={1}
               ref={reactDice}
-              rollDone={rollDone}
+              rollDone={handleRoll}
               faceColor='white'
               dotColor='black'
               outline={true}
@@ -112,7 +110,7 @@ const rollDone = (totalValue, values) => {
             />
         </div>
        <div>
-       <button className='btn btn-success btn-lg mt-4' onClick={endTurn}>End Turn</button>
+       <button className={`btn btn-lg mt-4 ${playerButtonClass}`} onClick={endTurn}>Pass to {playerPassText}</button>
        </div>
      </div>
        )}
