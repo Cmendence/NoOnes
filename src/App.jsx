@@ -29,7 +29,6 @@ function App() {
    }, [totalScores]);
  
    function handleRoll(totalValue){
-      setIsRolling(true)
       if (totalValue === 1) {
         // If a 1 is rolled, reset the current turn score and switch players.
         setCurrentTurnScore(0);
@@ -37,16 +36,22 @@ function App() {
         setRollClass('roll-1')
         setTimeout(() => {
          setRollClass('')
-         setIsRolling(false)
         }, 800);
       } else {
         // Add the roll result to the current turn score.
         setCurrentTurnScore(currentTurnScore + totalValue);
         setRollClass('')
-        setIsRolling(false)
       }
     }
  
+    function rollAll() {
+      setIsRolling(true)
+      reactDice.current?.rollAll()
+      setTimeout(() => {
+         setIsRolling(false)
+      }, 800);
+    }
+
    function endTurn() {
      // Add the current turn score to the total score of the current player.
      setTotalScores({
@@ -70,7 +75,8 @@ function App() {
     }
 
    return (
-     <div className={`game ${!winner ? `${currentPlayer}-bg` : 'winner-bg'}`}>
+     <div 
+     className={`game ${!winner ? `${currentPlayer}-bg` : 'winner-bg'}`}>
        <h1>No Ones!</h1>
        {winner ? (
          <>
@@ -87,13 +93,21 @@ function App() {
     )}
      </>
  ) : (
-   <div className='game-containter' >
+   <div className={`game-containter ${isRolling ? 'is-rolling' : ''}`} >
        <h4>Roll, score points, but don't roll a 1!</h4>
        <h3>{currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn!</h3>
        <p>Red Score: {totalScores.red}</p>
        <p>Blue Score: {totalScores.blue}</p>
        <p>{currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn Score: {currentTurnScore}</p>
-       <div className={rollClass} disabled={isRolling}>
+         <button
+         className='btn btn-lg roll-btn mb-4'
+         disabled={isRolling}
+         onClick={rollAll}
+         >Roll!</button>
+       <div 
+         className={`die-container ${rollClass} ${isRolling ? 'is-rolling' : ''}`}
+         onClick={rollAll}
+         >
        <ReactDice
               numDice={1}
               defaultRoll={1}
@@ -106,11 +120,12 @@ function App() {
               dieSize={140}
               rollTime={0.8}
               dieCornerRadius={20}
-              disableIndividual={isRolling}
+              disableIndividual={true}
+              
             />
         </div>
        <div>
-       <button className={`btn btn-lg mt-4 ${playerButtonClass}`} onClick={endTurn}>Pass to {playerPassText}</button>
+       <button className={`btn btn-lg mt-4 pass-btn ${playerButtonClass}`} onClick={endTurn}>Pass to {playerPassText}</button>
        </div>
      </div>
        )}

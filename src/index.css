@@ -5,8 +5,9 @@
 
 .game {
    text-align: center;
-   
-   height: 100vh;
+   align-items: center; /* Center vertically */
+   justify-content: center; /* Center horizontally */
+   height: 100vh
 }
 
 .red-bg {
@@ -34,11 +35,61 @@
    background-color: rgb(167, 82, 247);
 }
 
+.roll-btn{
+  background: rgb(109, 47, 167);
+  color:white;
+  border: 1px solid black;
+  box-shadow: 2px 2px 2px black;
+  
+}
+
+.roll-btn:hover{
+   background:rgb(63, 27, 97);
+   color: white;
+   border: 1px solid black;
+}
+.roll-btn:disabled{
+   background: rgb(63, 27, 97);
+   color: white;
+   border: 1px solid black;
+}
+
+.roll-btn:active{
+   background:rgb(63, 27, 97);
+   color: white;
+   border: 1px solid black;
+   transform: translateY(4px);
+   box-shadow: 0px 0px 0px black;
+}
+
+.pass-btn {
+   border: 1px solid black;
+   box-shadow: 2px 2px 2px black;
+}
+
+.pass-btn:active {
+   border: 1px solid black;
+   transform: translateY(4px);
+   box-shadow: 0px 0px 0px black;
+}
+
 .roll-1 { 
    animation-name: wobble; 
    animation-duration: .8s; 
 } 
  
+.is-rolling {
+   pointer-events: none;
+   
+}
+
+/* .die-container{
+   width:200px;
+   text-align: center;
+
+   height: 100%;
+} */
+
 /* Setting Animation effect to the  
     dice using css keyframe */
 @keyframes wobble { 
@@ -70,3 +121,4 @@
        transform: translate3d(0, 0, 0); 
    } 
 }
+
