@@ -3,6 +3,10 @@ import ReactDice, {ReactDiceRef} from 'react-dice-complete'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import Confetti from 'react-confetti'
+import WinnerScreen from './components/WinnerScreen'
+import DiceBox from './components/DiceBox'
+import Scoreboard from './components/Scoreboard'
+import Rules from './components/Rules'
 
 
 function App() {
@@ -15,15 +19,16 @@ function App() {
     const [isRolling, setIsRolling] = useState(false)
     const [confetti, setConfetti] = useState(false)
     const [isGameStarted, setIsGameStarted] = useState(false)
+    const [showRules, setShowRules] = useState(false)
 
     const reactDice = useRef(null);
     const playerButtonClass = currentPlayer === 'red' ? 'btn-primary' : 'btn-danger'
     const playerPassText = currentPlayer === 'red' ? 'Blue' : 'Red'
 
    useEffect(() => {
-     if (totalScores.red >= 100 || totalScores.blue >= 100) {
+     if (totalScores.red >= 10 || totalScores.blue >= 10) {
        // If any player reaches 100 points, set the winner.
-       setWinner(totalScores.red >= 100 ? 'Red' : 'Blue');
+       setWinner(totalScores.red >= 10 ? 'Red' : 'Blue');
        setConfetti(true)
      }
    }, [totalScores]);
@@ -74,16 +79,25 @@ function App() {
       setConfetti(false);
     }
 
+    function toggleRules(){
+      setShowRules(!showRules)
+      console.log(showRules)
+    }
+
    return (
      <div 
      className={`game ${!winner ? `${currentPlayer}-bg` : 'winner-bg'}`}>
        <h1>No Ones!</h1>
+       <Rules
+         showRules={showRules}
+         toggleRules={toggleRules}       
+       />
        {winner ? (
          <>
-   <div className='winner-container'>
-     <h2>{winner} wins!</h2>
-     <button className='btn btn-primary' onClick={restartGame}>Play Again</button>
-   </div>
+   <WinnerScreen
+      winner={winner}
+      restartGame={restartGame}
+   />
    {confetti && (
       <Confetti
         width={window.innerWidth}
@@ -96,37 +110,24 @@ function App() {
    <div className={`game-containter ${isRolling ? 'is-rolling' : ''}`} >
        <h4>Roll, score points, but don't roll a 1!</h4>
        <h3>{currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn!</h3>
+      <Scoreboard />
        <p>Red Score: {totalScores.red}</p>
        <p>Blue Score: {totalScores.blue}</p>
-       <p>{currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn Score: {currentTurnScore}</p>
-         <button
-         className='btn btn-lg roll-btn mb-4'
-         disabled={isRolling}
-         onClick={rollAll}
-         >Roll!</button>
-       <div 
-         className={`die-container ${rollClass} ${isRolling ? 'is-rolling' : ''}`}
-         onClick={rollAll}
-         >
-       <ReactDice
-              numDice={1}
-              defaultRoll={1}
-              ref={reactDice}
-              rollDone={handleRoll}
-              faceColor='white'
-              dotColor='black'
-              outline={true}
-              outlineColor='black'
-              dieSize={140}
-              rollTime={0.8}
-              dieCornerRadius={20}
-              disableIndividual={true}
-              
-            />
-        </div>
-       <div>
-       <button className={`btn btn-lg mt-4 pass-btn ${playerButtonClass}`} onClick={endTurn}>Pass to {playerPassText}</button>
-       </div>
+       <h4>{currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn Score:</h4> 
+       <h3>{currentTurnScore}</h3>
+
+
+        <DiceBox
+           isRolling={isRolling}
+           rollAll={rollAll}
+           rollClass={rollClass}
+           reactDice={reactDice}
+           handleRoll={handleRoll}
+           endTurn={endTurn}
+           playerButtonClass={playerButtonClass}
+           playerPassText={playerPassText}
+        />
+
      </div>
        )}
      </div>

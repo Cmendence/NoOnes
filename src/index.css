@@ -90,6 +90,45 @@
    height: 100%;
 } */
 
+.red-score{
+   border: 1px solid black;
+}
+
+.blue-score{
+   border: 1px solid black;
+
+}
+
+.rules-container {
+   position: relative;
+   display: inline-block;
+ }
+ 
+
+.rules {
+   color: white;
+   border-radius: 4px;
+   position: absolute;
+   top: 100%;
+   left: 50%;
+   transform: translateX(-50%);
+   background-color: rgb(142, 137, 137);
+   padding: 10px;
+   max-width: 300px;
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+   z-index: 9999; /* Ensures the tooltip is above other elements */
+   display: none;
+  
+   opacity: 0; /* Start with opacity set to 0 */
+ }
+
+ .rules.shown{
+   display:block;
+   opacity: 1;
+   transition: opacity 0.3s ease-in-out;
+
+ }
+
 /* Setting Animation effect to the  
     dice using css keyframe */
 @keyframes wobble { 
