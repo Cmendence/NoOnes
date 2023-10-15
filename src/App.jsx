@@ -88,29 +88,30 @@ function App() {
      <div 
      className={`game ${!winner ? `${currentPlayer}-bg` : 'winner-bg'}`}>
        <h1>No Ones!</h1>
-       <Rules
-         showRules={showRules}
-         toggleRules={toggleRules}       
-       />
        {winner ? (
-         <>
+          <>
    <WinnerScreen
       winner={winner}
       restartGame={restartGame}
    />
    {confetti && (
       <Confetti
-        width={window.innerWidth}
-        height={window.innerHeight}
-        numberOfPieces={200}
+      width={window.innerWidth}
+      height={window.innerHeight}
+      numberOfPieces={200}
       />
-    )}
+      )}
      </>
  ) : (
-   <div className={`game-containter ${isRolling ? 'is-rolling' : ''}`} >
-       <h4>Roll, score points, but don't roll a 1!</h4>
+    <div className={`game-containter ${isRolling ? 'is-rolling' : ''}`} >
+      {/* <Rules
+        showRules={showRules}
+        toggleRules={toggleRules}       
+      /> */}
        <h3>{currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn!</h3>
-      <Scoreboard />
+      {/* <Scoreboard
+         totalScores={totalScores}
+      /> */}
        <p>Red Score: {totalScores.red}</p>
        <p>Blue Score: {totalScores.blue}</p>
        <h4>{currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn Score:</h4> 
