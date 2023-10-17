@@ -1,0 +1,3 @@
+[submodule "react-dice-roll"]
+	path = react-dice-roll
+	url = https://github.com/Cmendence/react-dice-roll.git
