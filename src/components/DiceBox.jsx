@@ -17,11 +17,11 @@ export default function DiceBox(
 
 return (
    <div>
-       <button
+       {/* <button
          className='btn btn-lg roll-btn mb-4'
          disabled={isRolling}
          onClick={rollAll}
-         >Roll!</button>
+         >Roll!</button> */}
        <div 
          className={`die-container ${rollClass} ${isRolling ? 'is-rolling' : ''}`}
          onClick={rollAll}

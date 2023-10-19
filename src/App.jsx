@@ -11,7 +11,7 @@ import Rules from './components/Rules'
 
 function App() {
 
-   const [currentPlayer, setCurrentPlayer] = useState('red');
+   const [currentPlayer, setCurrentPlayer] = useState('blue');
     const [currentTurnScore, setCurrentTurnScore] = useState(0);
     const [totalScores, setTotalScores] = useState({ red: 0, blue: 0 });
     const [winner, setWinner] = useState(null);
@@ -26,9 +26,9 @@ function App() {
     const playerPassText = currentPlayer === 'red' ? 'Blue' : 'Red'
 
    useEffect(() => {
-     if (totalScores.red >= 10 || totalScores.blue >= 10) {
+     if (totalScores.red >= 50 || totalScores.blue >= 50) {
        // If any player reaches 100 points, set the winner.
-       setWinner(totalScores.red >= 10 ? 'Red' : 'Blue');
+       setWinner(totalScores.red >= 50 ? 'Red' : 'Blue');
        setConfetti(true)
      }
    }, [totalScores]);
@@ -109,13 +109,15 @@ function App() {
         toggleRules={toggleRules}       
       /> */}
        <h3>{currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn!</h3>
-      {/* <Scoreboard
+      <Scoreboard
          totalScores={totalScores}
-      /> */}
-       <p>Red Score: {totalScores.red}</p>
-       <p>Blue Score: {totalScores.blue}</p>
+      />
+   
+   
+       {/* <p>Red Score: {totalScores.red}</p>
+       <p>Blue Score: {totalScores.blue}</p> */}
        <h4>{currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn Score:</h4> 
-       <h3>{currentTurnScore}</h3>
+       <h2>{currentTurnScore}</h2>
 
 
         <DiceBox
@@ -128,7 +130,7 @@ function App() {
            playerButtonClass={playerButtonClass}
            playerPassText={playerPassText}
         />
-
+     
      </div>
        )}
      </div>

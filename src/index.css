@@ -185,3 +185,18 @@
    } 
 }
 
+.scoreboard {
+   background: #333;
+   color: #fff;
+   padding: 15px;
+   border-radius: 5px;
+}
+.score {
+   font-size: 50px;
+   font-weight: 700;
+   font-family: monospace;
+}
+.team-name {
+   font-size: 25px;
+   font-weight: 600;
+}

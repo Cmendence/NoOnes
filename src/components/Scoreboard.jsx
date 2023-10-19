@@ -8,18 +8,25 @@ const blueScore = totalScores.blue || 0
 
 
    return(
-      <div className='scoreboard-container row'>
-         <div className="col-2"></div>
-         <div className="blue-score box col-2 text-center d-flex justify-content-center">
-            <h1>{blueScore}</h1>
-         </div>
-         <div className="col-4"></div>
-         <div className="red-score box col-2 text-center d-flex justify-content-center">
-            <h1>{redScore}</h1>
-         </div>
-         <div className="col-2"></div>
-      </div>
 
     
+      <div className="container">
+      <div className="row">
+          <div className="col-6 col-lg-2 mx-auto">
+              <div className="scoreboard text-center mb-3">
+                  <div className="team-name">Red</div>
+                  <div className="score display-6" id="home-score">{redScore}</div>
+                 
+              </div>
+          </div>
+          <div className="col-6 col-lg-2 mx-auto">
+              <div className="scoreboard text-center mb-3">
+                  <div className="team-name ">Blue</div>
+                  <div className="score display-6" id="away-score">{blueScore}</div>
+                 
+              </div>
+          </div>
+      </div>
+  </div>
    )
 }
