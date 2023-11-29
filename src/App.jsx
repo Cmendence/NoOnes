@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import ReactDice, {ReactDiceRef} from 'react-dice-complete'
+
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import Confetti from 'react-confetti'
@@ -14,7 +14,7 @@ function App() {
    const [currentPlayer, setCurrentPlayer] = useState('blue');
     const [currentTurnScore, setCurrentTurnScore] = useState(0);
     const [totalScores, setTotalScores] = useState({ red: 0, blue: 0 });
-    const [winner, setWinner] = useState(null);
+    const [winner, setWinner] = useState('Red');
     const [rollClass, setRollClass] = useState('')
     const [isRolling, setIsRolling] = useState(false)
     const [confetti, setConfetti] = useState(false)
@@ -24,9 +24,9 @@ function App() {
     const playerPassText = currentPlayer === 'red' ? 'Blue' : 'Red'
 
    useEffect(() => {
-     if (totalScores.red >= 50 || totalScores.blue >= 50) {
+     if (totalScores.red >= 10 || totalScores.blue >= 10) {
        // If any player reaches 100 points, set the winner.
-       setWinner(totalScores.red >= 50 ? 'Red' : 'Blue');
+       setWinner(totalScores.red >= 10 ? 'Red' : 'Blue');
        setConfetti(true)
      }
    }, [totalScores]);
@@ -111,7 +111,7 @@ function App() {
              {currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s
              Turn Score:
            </h4>
-           <h2>{currentTurnScore}</h2>
+           <h5 className='display-3 mb-3'>{currentTurnScore}</h5>
 
            <DiceBox
              isRolling={isRolling}

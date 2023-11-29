@@ -5,8 +5,8 @@ export default function WinnerScreen({winner, restartGame}) {
 
    return (
    <div className='winner-container'>
-     <h2>{winner} wins!</h2>
-     <button className='btn btn-primary' onClick={restartGame}>Play Again</button>
+     <h1 className='display-2'>{winner} Wins!</h1>
+     <button className='btn-winner btn btn-primary ' onClick={restartGame}>Play Again</button>
    </div>
    )
 }
