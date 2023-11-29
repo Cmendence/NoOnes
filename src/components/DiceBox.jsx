@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDice from 'react-dice-complete'
+import PropTypes, { bool, func, object, string } from 'prop-types'
 
 
 export default function DiceBox(
@@ -11,9 +12,22 @@ export default function DiceBox(
       handleRoll,
       endTurn,
       playerButtonClass,
-      playerPassText
-   }
+      playerPassText,
+}
+   
 ) {
+
+
+   DiceBox.propTypes = {
+      isRolling: bool,
+         rollAll: func,
+         rollClass: string,
+         reactDice: object,
+         handleRoll: func,
+         endTurn:func,
+         playerButtonClass: string,
+         playerPassText: string
+   }
 
 return (
    <div>

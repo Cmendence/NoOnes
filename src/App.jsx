@@ -77,11 +77,6 @@ function App() {
       setConfetti(false);
     }
 
-   //  function toggleRules(){
-   //    setShowRules(!showRules)
-   //    console.log(showRules)
-   //  }
-
    return (
      <div className={`game ${!winner ? `${currentPlayer}-bg` : "winner-bg"}`}>
 
@@ -103,12 +98,12 @@ function App() {
        
        <Rules />
            <h3>
-             {currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s
+             {currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}&apos;s
              Turn!
            </h3>
            <Scoreboard totalScores={totalScores} />
            <h4>
-             {currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s
+             {currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}&apos;s
              Turn Score:
            </h4>
            <h5 className='display-3 mb-3'>{currentTurnScore}</h5>
