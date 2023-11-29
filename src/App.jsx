@@ -18,8 +18,6 @@ function App() {
     const [rollClass, setRollClass] = useState('')
     const [isRolling, setIsRolling] = useState(false)
     const [confetti, setConfetti] = useState(false)
-    const [isGameStarted, setIsGameStarted] = useState(false)
-    const [showRules, setShowRules] = useState(false)
 
     const reactDice = useRef(null);
     const playerButtonClass = currentPlayer === 'red' ? 'btn-primary' : 'btn-danger'
@@ -86,46 +84,29 @@ function App() {
 
    return (
      <div className={`game ${!winner ? `${currentPlayer}-bg` : "winner-bg"}`}>
-       <h1>No Ones!</h1>
 
-       <button
-         type="button"
-         className="btn btn-info text-light mb-2"
-         data-bs-toggle="tooltip"
-         data-bs-placement="bottom"
-         data-bs-trigger="manual"
-         title="Click the die to roll. Accumulate points by rolling,
-         pass to bank your points, but if you roll a 1 you lose 
-         your turn's points and your turn. First to 50 wins."
-       >
-         How to Play
-       </button>
 
        {winner ? (
          <>
            <WinnerScreen winner={winner} restartGame={restartGame} />
            {confetti && (
              <Confetti
-               width={window.innerWidth}
-               height={window.innerHeight}
-               numberOfPieces={200}
+             width={window.innerWidth}
+             height={window.innerHeight}
+             numberOfPieces={200}
              />
-           )}
+             )}
          </>
        ) : (
-         <div className={`game-containter ${isRolling ? "is-rolling" : ""}`}>
-           {/* <Rules
-        showRules={showRules}
-        toggleRules={toggleRules}       
-      /> */}
+          <div className={`game-containter ${isRolling ? "is-rolling" : ""}`}>
+            <h1>No Ones!</h1>
+       
+       <Rules />
            <h3>
              {currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s
              Turn!
            </h3>
            <Scoreboard totalScores={totalScores} />
-
-           {/* <p>Red Score: {totalScores.red}</p>
-       <p>Blue Score: {totalScores.blue}</p> */}
            <h4>
              {currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s
              Turn Score:

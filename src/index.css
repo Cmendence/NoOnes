@@ -1,7 +1,4 @@
-{
-   
-   
-}
+
 
 @font-face {
    font-family: 'Digital Display';
@@ -45,33 +42,6 @@
    background-color: rgb(167, 82, 247);
 }
 
-.roll-btn{
-  background: rgb(109, 47, 167);
-  color:white;
-  border: 1px solid black;
-  box-shadow: 2px 2px 2px black;
-  
-}
-
-.roll-btn:hover{
-   background:rgb(63, 27, 97);
-   color: white;
-   border: 1px solid black;
-}
-.roll-btn:disabled{
-   background: rgb(63, 27, 97);
-   color: white;
-   border: 1px solid black;
-}
-
-.roll-btn:active{
-   background:rgb(63, 27, 97);
-   color: white;
-   border: 1px solid black;
-   transform: translateY(4px);
-   box-shadow: 0px 0px 0px black;
-}
-
 .pass-btn {
    border: 1px solid black;
    box-shadow: 2px 2px 2px black;
@@ -90,68 +60,41 @@
  
 .is-rolling {
    pointer-events: none;
-   
 }
 
-/* .die-container{
-   width:200px;
-   text-align: center;
-
-   height: 100%;
-} */
-
-/* .red-score{
-   border: 1px solid black;
+ .scoreboard {
+   background: #333;
+   color: #fff;
+   padding: 15px;
+   border-radius: 10px;
+}
+.score {
+   font-size: 50px;
+   font-weight: 700;
+   font-family: monospace;
+}
+.team-name {
+   font-size: 25px;
+   font-weight: 600;
 }
 
-.blue-score{
-   border: 1px solid black;
-
-} */
-
-.rules-container {
-   position: relative;
-   display: inline-block;
-   max-width: 50vw;
- }
- 
-
-.rules {
+.btn-rules {
    color: white;
-   border-radius: 4px;
-   position: absolute;
-   top: 100%;
-   left: 50%;
-   transform: translateX(-50%);
-   background-color: rgb(142, 137, 137);
-   padding: 10px;
-   max-width: 50vw;
-   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-   z-index: 9999; /* Ensures the tooltip is above other elements */
-   display: none;
-  
-   opacity: 0; /* Start with opacity set to 0 */
- }
-
- .rules.shown{
-   display:block;
-   opacity: 1;
-   transition: opacity 0.3s ease-in-out;
-
- }
-
- .scoreboard-container{
-   font-family: 'Digital Display';
+   background-color: rgb(109, 47, 167);
+   border: 1px solid black;
+   box-shadow: 2px 2px 2px black;
    
- }
+}
 
- .box {
-   background-color: black;
-   color: rgb(170, 151, 6);
-   text-align: center;
-   align-items: center;
-   font-size: 2em;
- }
+.btn-rules:active {
+   border: 1px solid black;
+   transform: translateY(4px);
+   box-shadow: 0px 0px 0px black;
+}
+
+.btn-rules:hover {
+   background-color: rgb(81, 35, 125);
+}
 
 /* Setting Animation effect to the  
     dice using css keyframe */
@@ -185,18 +128,3 @@
    } 
 }
 
-.scoreboard {
-   background: #333;
-   color: #fff;
-   padding: 15px;
-   border-radius: 5px;
-}
-.score {
-   font-size: 50px;
-   font-weight: 700;
-   font-family: monospace;
-}
-.team-name {
-   font-size: 25px;
-   font-weight: 600;
-}

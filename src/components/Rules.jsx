@@ -1,20 +1,33 @@
-import React from 'react'
+import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 
-export default function Rules({showRules, toggleRules}){
+export default function Rules() {
 
-   return (
-      <div className='rules-container'>
-      <button className='btn btn-success btn-sm mb-2' onClick={toggleRules}>How to Play</button>
-      { showRules && (
-        <div className={`rules ${showRules ? 'shown' : ''}`}>
-           <p>Click the button(or die) to roll the die. Your roll is your score. You can bank you score and pass your turn to the other 
-               player, or keep rolling to get more points. If you roll a 1, you lose your current turn's points and your turn is over.
-               First to 100 points wins!
-           </p>
-        </div>
-      )
+  const popover = (
+   <Popover id="popover-basic">
+     <Popover.Header as="h3">Game Rules</Popover.Header>
+     <Popover.Body>
+         Click the die to roll. Accumulate points by rolling, pass to bank
+         your points, but if you roll a 1 you lose your turn's points and
+         your turn. First to 50 wins.
+     </Popover.Body>
+   </Popover>
+ );
+ 
+ const GameRules = () => (
+   <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+     <Button className="btn-rules mb-2" variant="dark">How to Play</Button>
+   </OverlayTrigger>
+ );
+ 
 
-      }
-      </div>
-   )
+  return (
+   
+   <>
+
+<GameRules />
+   
+ </>
+  );
 }
