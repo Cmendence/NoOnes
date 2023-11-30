@@ -106,7 +106,7 @@ function App() {
              {currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}&apos;s
              Turn Score:
            </h4>
-           <h5 className='display-3 mb-3'>{currentTurnScore}</h5>
+           <h5 className='display-3 mb-3 fw-bold'>{currentTurnScore}</h5>
 
            <DiceBox
              isRolling={isRolling}
