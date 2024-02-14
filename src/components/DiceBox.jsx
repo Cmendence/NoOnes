@@ -13,6 +13,7 @@ export default function DiceBox(
       endTurn,
       playerButtonClass,
       playerPassText,
+      declareWinner
 }
    
 ) {
@@ -26,7 +27,8 @@ export default function DiceBox(
          handleRoll: func,
          endTurn:func,
          playerButtonClass: string,
-         playerPassText: string
+         playerPassText: string,
+         declareWinner: string
    }
 
 return (
@@ -52,7 +54,8 @@ return (
             />
         </div>
         <div>
-       <button className={`btn btn-lg mt-4 pass-btn ${playerButtonClass}`} onClick={endTurn}>Pass to {playerPassText}</button>
+       <button className={`btn btn-lg mt-4 pass-btn ${!declareWinner ? playerButtonClass : declareWinner}`} onClick={endTurn}>
+         {declareWinner? "END GAME" : `Pass to ${playerPassText}`}</button>
        </div>
    </div>
 )

@@ -19,6 +19,11 @@ function App() {
     const [isRolling, setIsRolling] = useState(false)
     const [confetti, setConfetti] = useState(false)
 
+   //  const declareWinner = totalScores[currentPlayer] + currentTurnScore
+
+    const declareWinner = totalScores[currentPlayer] + currentTurnScore >=50 ? 
+    ( "btn-success p-4"): ("")
+
     const reactDice = useRef(null);
     const playerButtonClass = currentPlayer === 'red' ? 'btn-primary' : 'btn-danger'
     const playerPassText = currentPlayer === 'red' ? 'Blue' : 'Red'
@@ -117,6 +122,7 @@ function App() {
              endTurn={endTurn}
              playerButtonClass={playerButtonClass}
              playerPassText={playerPassText}
+             declareWinner={declareWinner}
            />
          </div>
        )}
