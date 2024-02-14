@@ -22,7 +22,7 @@ function App() {
    //  const declareWinner = totalScores[currentPlayer] + currentTurnScore
 
     const declareWinner = totalScores[currentPlayer] + currentTurnScore >=50 ? 
-    ( "btn-success p-4"): ("")
+    ( "btn-success p-4 rounded-pill"): ("")
 
     const reactDice = useRef(null);
     const playerButtonClass = currentPlayer === 'red' ? 'btn-primary' : 'btn-danger'
