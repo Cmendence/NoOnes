@@ -11,7 +11,9 @@ Roll the dice! Pass your turn to bank your points for the turn. First to 50 wins
 
 ## Technologies-used
 -Vite
+
 -React
+
 -Bootstrap
 
 This project is live at https://no1s.netlify.app/
